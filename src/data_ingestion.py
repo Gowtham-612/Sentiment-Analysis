@@ -10,7 +10,7 @@ def ingest_data():
     df = pd.read_csv(data_path, delimiter="\t", quoting=3)
 
     df.dropna(inplace=True)
-    logger.info(f"Loaded dataset shape: {df.shape}")
+    logger.info(f"Load dataset shape: {df.shape}")
 
     df.to_csv("data/raw.csv", index=False)
     logger.info("Saved raw data → data/raw.csv")
