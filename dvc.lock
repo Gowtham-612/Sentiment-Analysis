@@ -1,0 +1,105 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/data_ingestion.py
+    deps:
+    - path: data/amazon_alexa.tsv
+      hash: md5
+      md5: 8bb27c9f268004b180e3dff33a01a45b
+      size: 511601
+    - path: src/data_ingestion.py
+      hash: md5
+      md5: 49dacb644f4f20916802ecf98a3ebc52
+      size: 542
+    outs:
+    - path: data/raw.csv
+      hash: md5
+      md5: 7beaa1fd5c3bef0a74a57819b6cef81c
+      size: 518655
+  data_preprocessing:
+    cmd: python src/data_preprocessing.py
+    deps:
+    - path: config/params.yaml
+      hash: md5
+      md5: b28abfb9019d85e21b855865c31035c5
+      size: 310
+    - path: data/raw.csv
+      hash: md5
+      md5: 7beaa1fd5c3bef0a74a57819b6cef81c
+      size: 518655
+    - path: src/data_preprocessing.py
+      hash: md5
+      md5: 5678358b5827fc67c774c2faaf3d03e4
+      size: 1176
+    outs:
+    - path: data/processed.csv
+      hash: md5
+      md5: 67402c7f0b206e0450a1e2fb72462489
+      size: 758613
+  feature_engineering:
+    cmd: python src/feature_engineering.py
+    deps:
+    - path: config/params.yaml
+      hash: md5
+      md5: b28abfb9019d85e21b855865c31035c5
+      size: 310
+    - path: data/processed.csv
+      hash: md5
+      md5: 67402c7f0b206e0450a1e2fb72462489
+      size: 758613
+    - path: src/feature_engineering.py
+      hash: md5
+      md5: 869a1c8abc5c6f88996c1e887fd280fd
+      size: 882
+    outs:
+    - path: models/countVectorizer.pkl
+      hash: md5
+      md5: 290bc5c12634de00bc587353531e24ce
+      size: 69273
+    - path: models/scaler.pkl
+      hash: md5
+      md5: 82874808e27a82deb496bf1400fbe056
+      size: 100512
+  model_training:
+    cmd: python src/model_training.py
+    deps:
+    - path: config/params.yaml
+      hash: md5
+      md5: b28abfb9019d85e21b855865c31035c5
+      size: 310
+    - path: data/processed.csv
+      hash: md5
+      md5: 67402c7f0b206e0450a1e2fb72462489
+      size: 758613
+    - path: models/countVectorizer.pkl
+      hash: md5
+      md5: 290bc5c12634de00bc587353531e24ce
+      size: 69273
+    - path: models/scaler.pkl
+      hash: md5
+      md5: 82874808e27a82deb496bf1400fbe056
+      size: 100512
+    - path: src/model_training.py
+      hash: md5
+      md5: 215bfc33eadf6909a18b8c358bd375fd
+      size: 1667
+    outs:
+    - path: models/model_xgb.pkl
+      hash: md5
+      md5: 1f947e11201e6edfa23697be3443fe89
+      size: 261990
+  model_evaluation:
+    cmd: python src/model_evaluation.py
+    deps:
+    - path: data/processed.csv
+      hash: md5
+      md5: 67402c7f0b206e0450a1e2fb72462489
+      size: 758613
+    - path: models/model_xgb.pkl
+      hash: md5
+      md5: 1f947e11201e6edfa23697be3443fe89
+      size: 261990
+    - path: src/model_evaluation.py
+      hash: md5
+      md5: 1b004c35f3f96313f8e3e2b8368c2d0a
+      size: 629

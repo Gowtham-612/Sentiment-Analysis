@@ -1,0 +1,97 @@
+# ---------------------------
+# PYTHON
+# ---------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pkl
+*.pickle
+*.joblib
+
+# Virtual environment folders
+env/
+venv/
+.venv/
+ENV/
+python_env/
+
+# ---------------------------
+# PROJECT ARTIFACTS
+# ---------------------------
+models/*.pkl
+models/*.joblib
+models/*.pkl.zip
+
+# Do NOT ignore the folder itself
+!models/
+
+# ---------------------------
+# DVC
+# ---------------------------
+*.dvc
+.dvc/tmp/
+.dvc/cache/
+.dvcignore
+
+# Allow dvc.yaml and dvc.lock to be committed
+!dvc.yaml
+!dvc.lock
+
+# ---------------------------
+# MLFLOW
+# ---------------------------
+mlruns/
+mlartifacts/
+
+# ---------------------------
+# LOGS
+# ---------------------------
+logs/
+*.log
+
+# ---------------------------
+# NLTK data
+# ---------------------------
+nltk_data/
+
+# ---------------------------
+# JUPYTER / NOTEBOOKS
+# ---------------------------
+.ipynb_checkpoints/
+*.ipynb_convert/
+
+# ---------------------------
+# VS CODE
+# ---------------------------
+.vscode/
+*.code-workspace
+
+# ---------------------------
+# SYSTEM FILES
+# ---------------------------
+Thumbs.db
+.DS_Store
+*.swp
+*.tmp
+
+# VS Code Jupyter virtual notebooks
+notebooks/.virtual_documents/
+.virtual_documents/
+anaconda_projects/
+*.db
+
+
+# ---------------------------
+# CACHE & TEMP FILES
+# ---------------------------
+.cache/
+*.cache
+*.tmp
+*.bak
+*.old
+
+# ---------------------------
+# GIT FOLDER IGNORE RULES
+# ---------------------------
+# (You can add extra model versions or folders if needed)
